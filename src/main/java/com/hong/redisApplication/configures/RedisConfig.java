@@ -2,6 +2,7 @@ package com.hong.redisApplication.configures;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -27,9 +28,9 @@ public class RedisConfig {
     }
 
     @Bean
-    public RedisTemplate<?, ?> redisTemplate() {
+    public RedisTemplate<?, ?> redisTemplate(RedisConnectionFactory redisConnectionFactory ) {
         RedisTemplate<byte[], byte[]> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(redisConnectionFactory());
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
         return redisTemplate;
     }
 }
